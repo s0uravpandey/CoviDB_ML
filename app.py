@@ -4,7 +4,7 @@ import pickle
 import pandas as pd
 
 app = Flask(__name__)
-model = pickle.load(open('india\ind_svr_model.pkl', 'rb'))
+model = pickle.load(open('India/ind_svr_model.pkl', 'rb'))
 
 @app.route('/')
 def home():
