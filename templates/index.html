@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html >
+<!--From https://codepen.io/frytyler/pen/EGdtg-->
+<head>
+  <meta charset="UTF-8">
+  <title>CoviDB</title>
+</head>
+<body>
+  <style type="text/css">
+    body{
+      background-color: black;
+      color: white;
+    }
+    h1{
+      text-align: center;
+    }
+    button{
+      margin-top: 20px;
+    }
+    button:hover{
+      color: red;
+      padding: 10px 20px;
+    }
+  </style>
+ <div class="login" align="center">
+	<h1>Predict COVID 19 India Vaccinations</h1>
+     <!-- Main Input For Receiving Query to our ML -->
+    <form action="/predict" method="post" id="form1">
+    	<input type="text" name="Days" placeholder="Days" required="required" class="input1" /><br>
+        <button type="submit" class="btn btn-primary btn-block btn-large">Predict</button>
+    </form>
+   <br>
+   <br>
+   <span>The Number of Vaccines Doses jabbed will be</span> {{ prediction_text }} which is approximatley <span>
+   {{ prediction_percent }}</span>% of India's Population.
+ </div>
+
+</body>
+</html>
