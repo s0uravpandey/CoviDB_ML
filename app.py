@@ -8,7 +8,7 @@ model = pickle.load(open('India/ind_svr_model.pkl', 'rb'))
 
 @app.route('/')
 def home():
-    return render_template('index.html')
+    return render_template('vaccine_Prediction_final.html')
 
 @app.route('/predict',methods=['POST'])
 def predict():
@@ -27,7 +27,7 @@ def predict():
     y=sc_y.fit_transform(y)
     y_pred=sc_y.inverse_transform(model.predict(sc_X.transform(np.array([[int(x) for x in request.form.values()]]))))
     output=round(y_pred[0])
-    return render_template('index.html',prediction_text=output,prediction_percent=round(output/13000000))
+    return render_template('vaccine_Prediction_final.html',prediction_text=output,prediction_percent=round(output/13000000))
     
 
 if __name__ == "__main__":
