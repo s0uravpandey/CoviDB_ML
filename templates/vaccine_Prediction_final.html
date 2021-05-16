@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html >
+<!--From https://codepen.io/frytyler/pen/EGdtg-->
+<head>
+  <meta charset="UTF-8">
+  <title>CoviDB</title>
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,400;1,300&display=swap" rel="stylesheet">
+</head>
+<body>
+  <style type="text/css">
+    body{
+      background-color: #1f2a37;
+      color: rgb(253, 24, 70);
+      font-family: 'Poppins', sans-serif;
+    }
+    h1{
+      text-align: center;
+      font-size: 35px;
+    }
+    input {
+      width: 200px;
+      height: 30px;
+      padding: 10px;
+      border-radius: 10px;
+      background: transparent;
+      border: none !important;
+      box-shadow: 2px 2px 40px rgba(0, 0, 0, 0.2) inset;
+      caret-color: #057bfe;
+      color: #057bfe;
+      font-size: 20px;
+    }
+    input:focus {
+      outline: none !important;
+    }
+    ::placeholder {
+      color: #fff;
+    }
+    button{
+      margin-top: 20px;
+      background: none;
+      border: none;
+      font-size: 25px;
+      border: 2px solid whitesmoke;
+      color: rgb(253, 24, 70);
+      padding: 7px 7px;
+      border-radius: 10px;
+      transition: 0.5s all ease-in-out;
+    }
+    button:focus {
+      outline: none !important;
+    }
+    button:hover {
+      border: 2px solid rgb(253, 24, 70);
+      color: whitesmoke;
+    }
+    span {
+      font-size: 20px;
+    }
+    .hide {
+      display: none;
+    }
+  </style>
+ <div class="login" align="center">
+	<h1>Predict COVID 19 India Vaccinations</h1>
+     <!-- Main Input For Receiving Query to our ML -->
+    <form action="/predict" method="post" id="form1" name="myform">
+    	<input type="text" name="Days" placeholder="Days" required="required" class="input1" id="val"/><br>
+        <button type="submit" class="btn btn-primary btn-block btn-large" id="btnsend">Predict</button>
+    </form>
+   <br>
+   <br>
+   <div id="result">
+   <span id="out">The Number of Vaccines Doses jabbed will be </span><b>{{ prediction_text }} </b> which is approximatley <span>
+   {{ prediction_percent }}</span>% of India's Population.</div>
+   <br>
+   <div class="info">
+     Note : The above field takes an integer as input which is the <b>n<sup>th</sup></b> day from the start of the year, i.e. 15-01-2021. Enter a value greater than 16.
+   </div>
+ </div>
+<!--  <script>
+   document.getElementById('btnsend').addEventListener('click', (e) => {
+      if(document.getElementById('val').value >= 16) {
+        document.getElementById('result').style.display = 'none';
+        alert("Not enough Vaccination Data Available. Please Enter a greater day count.");
+        document.getElementById('result').style.display = 'block';
+        document.getElementById('val').innerText = "";
+        e.preventDefault();
+      }
+      else {
+        alert("Enter a Value greater than 16");
+      }
+   });
+ </script> -->
+</body>
+</html>
