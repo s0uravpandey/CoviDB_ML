@@ -65,13 +65,14 @@
 	<h1>Predict COVID 19 India Vaccinations</h1>
      <!-- Main Input For Receiving Query to our ML -->
     <form action="/predict" method="post" id="form1" name="myform">
-    	<input type="text" name="Days" placeholder="Days" required="required" class="input1" id="val"/><br>
+    	<label for="birthday">Date:</label>
+        <input type="date" id="prediction_date" name="prediction_date"><br>
         <button type="submit" class="btn btn-primary btn-block btn-large" id="btnsend">Predict</button>
     </form>
    <br>
    <br>
    <div id="result">
-   <span id="out">The Number of Vaccines Doses jabbed will be </span><b>{{ prediction_text }} </b> which is approximatley <span>
+   <span id="out">The Number of Vaccines Doses jabbed till {{ prediction_date }} will be </span><b>{{ prediction_text }} </b> which is approximatley <span>
    {{ prediction_percent }}</span>% of India's Population.</div>
    <br>
    <div class="info">
