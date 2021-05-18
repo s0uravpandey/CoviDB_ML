@@ -4,7 +4,7 @@ import pickle
 import pandas as pd
 
 app = Flask(__name__)
-model = pickle.load(open('india\ind_svr_model.pkl', 'rb'))
+model = pickle.load(open('India/ind_svr_model.pkl', 'rb'))
 
 @app.route('/')
 def home():
@@ -17,7 +17,7 @@ def predict():
     '''
     date = request.form['prediction_date']
     day=((int(date[5])*10+int(date[6]))-1)*30+(int(date[8])*10+int(date[9]))-12
-    dataset = pd.read_csv('india\ind_vaccinations.csv')
+    dataset = pd.read_csv('India/ind_vaccinations.csv')
     X = dataset.iloc[0:88,5].values
     y = dataset.iloc[0:112,3].values
     y=y.reshape(-1,1)
