@@ -2,7 +2,7 @@ Flask==1.1.2
 Werkzeug==1.0.1
 gunicorn==19.9.0
 itsdangerous==1.1.0
-Jinja2==2.10.1
+jinja2>=2.11.3
 MarkupSafe==1.1.1
 numpy>=1.9.2
 scipy>=0.15.1
