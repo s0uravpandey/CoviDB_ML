@@ -4,7 +4,7 @@ import pickle
 import pandas as pd
 
 app = Flask(__name__)
-ind_svr_model = pickle.load(open('india/ind_svr_model.pkl', 'rb'))
+ind_svr_model = pickle.load(open('India/ind_svr_model.pkl', 'rb'))
 fr_model=pickle.load(open('france/fr_linreg_model.pkl','rb'))
 aus_model=pickle.load(open('australia/aus_svr_model.pkl','rb'))
 
