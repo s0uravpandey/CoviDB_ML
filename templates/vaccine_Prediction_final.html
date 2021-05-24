@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html >
+<!--From https://codepen.io/frytyler/pen/EGdtg-->
+<head>
+  <meta charset="UTF-8">
+  <title>CoviDB</title>
+  <link rel="icon"  type="image/png" href="icon.png" type="image/x-icon">
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,400;1,300&display=swap" rel="stylesheet">
+</head>
+<body>
+  <style type="text/css">
+    body{
+      background-color: #1f2a37;
+      color: rgb(253, 24, 70);
+      font-family: 'Poppins', sans-serif;
+    }
+    h1{
+      text-align: center;
+      font-size: 35px;
+    }
+    input {
+      width: 200px;
+      height: 30px;
+      padding: 10px;
+      border-radius: 10px;
+      background: transparent;
+      border: none !important;
+      box-shadow: 2px 2px 40px rgba(0, 0, 0, 0.2) inset;
+      caret-color: #057bfe;
+      color: #057bfe;
+      font-size: 20px;
+    }
+    #country{
+      width: 200px;
+      height: 50px;
+      padding: 10px;
+      border-radius: 10px;
+      background: transparent;
+      border: none !important;
+      box-shadow: 2px 2px 40px rgba(0, 0, 0, 0.2) inset;
+      caret-color: #057bfe;
+      color: #057bfe;
+      font-size: 20px;
+    }
+    input:focus {
+      outline: none !important;
+    }
+    ::placeholder {
+      color: #fff;
+    }
+    button{
+      margin-top: 20px;
+      background: none;
+      border: none;
+      font-size: 25px;
+      border: 2px solid whitesmoke;
+      color: rgb(253, 24, 70);
+      padding: 7px 7px;
+      border-radius: 10px;
+      transition: 0.5s all ease-in-out;
+    }
+    button:focus {
+      outline: none !important;
+    }
+    button:hover {
+      border: 2px solid rgb(253, 24, 70);
+      color: whitesmoke;
+    }
+    span {
+      font-size: 20px;
+    }
+    .hide {
+      display: none;
+    }
+  </style>
+ <div class="login" align="center">
+	<h1>Predict COVID 19 India Vaccinations</h1>
+     <!-- Main Input For Receiving Query to our ML -->
+    <form action="/predict" method="post" id="form1" name="myform">
+      <label for="country">Choose a Country:</label>
+        <select name="country" id="country" required>
+          <option value="India">India</option>
+          <option value="France">France</option>
+          <option value="Australia">Australia</option>
+        </select>
+    	<label for="prediction_date">Date:</label>
+        <input type="date" id="prediction_date" name="prediction_date" required><br>
+        <button type="submit" class="btn btn-primary btn-block btn-large" id="btnsend">Predict</button>
+    </form>
+   <br>
+   <br>
+   <div id="result">
+   <span id="out">The Number of Vaccines Doses jabbed till {{ prediction_date }} in {{ form_country }} will be </span><b>{{ prediction_text }} </b> which is approximatley <span>
+   {{ prediction_percent }}</span>% of {{ form_country }}'s Population.</div>
+   <br>
+ </div>
+<!--  <script>
+   document.getElementById('btnsend').addEventListener('click', (e) => {
+      if(document.getElementById('val').value >= 16) {
+        document.getElementById('result').style.display = 'none';
+        alert("Not enough Vaccination Data Available. Please Enter a greater day count.");
+        document.getElementById('result').style.display = 'block';
+        document.getElementById('val').innerText = "";
+        e.preventDefault();
+      }
+      else {
+        alert("Enter a Value greater than 16");
+      }
+   });
+ </script> -->
+</body>
+</html>
