@@ -81,6 +81,7 @@
         <select name="country" id="country" required>
           <option value="India">India</option>
           <option value="France">France</option>
+          <option value="Australia">Australia</option>
         </select>
     	<label for="prediction_date">Date:</label>
         <input type="date" id="prediction_date" name="prediction_date" required><br>
@@ -92,9 +93,6 @@
    <span id="out">The Number of Vaccines Doses jabbed till {{ prediction_date }} in {{ form_country }} will be </span><b>{{ prediction_text }} </b> which is approximatley <span>
    {{ prediction_percent }}</span>% of {{ form_country }}'s Population.</div>
    <br>
-   <div class="info">
-     Note : The above field takes an integer as input which is the <b>n<sup>th</sup></b> day from the start of the year, i.e. 15-01-2021. Enter a value greater than 16.
-   </div>
  </div>
 <!--  <script>
    document.getElementById('btnsend').addEventListener('click', (e) => {
