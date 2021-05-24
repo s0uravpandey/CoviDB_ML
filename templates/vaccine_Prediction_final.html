@@ -30,6 +30,18 @@
       color: #057bfe;
       font-size: 20px;
     }
+    #country{
+      width: 200px;
+      height: 50px;
+      padding: 10px;
+      border-radius: 10px;
+      background: transparent;
+      border: none !important;
+      box-shadow: 2px 2px 40px rgba(0, 0, 0, 0.2) inset;
+      caret-color: #057bfe;
+      color: #057bfe;
+      font-size: 20px;
+    }
     input:focus {
       outline: none !important;
     }
@@ -65,15 +77,20 @@
 	<h1>Predict COVID 19 India Vaccinations</h1>
      <!-- Main Input For Receiving Query to our ML -->
     <form action="/predict" method="post" id="form1" name="myform">
-    	<label for="birthday">Date:</label>
-        <input type="date" id="prediction_date" name="prediction_date"><br>
+      <label for="country">Choose a Country:</label>
+        <select name="country" id="country" required>
+          <option value="India">India</option>
+          <option value="France">France</option>
+        </select>
+    	<label for="prediction_date">Date:</label>
+        <input type="date" id="prediction_date" name="prediction_date" required><br>
         <button type="submit" class="btn btn-primary btn-block btn-large" id="btnsend">Predict</button>
     </form>
    <br>
    <br>
    <div id="result">
-   <span id="out">The Number of Vaccines Doses jabbed till {{ prediction_date }} will be </span><b>{{ prediction_text }} </b> which is approximatley <span>
-   {{ prediction_percent }}</span>% of India's Population.</div>
+   <span id="out">The Number of Vaccines Doses jabbed till {{ prediction_date }} in {{ form_country }} will be </span><b>{{ prediction_text }} </b> which is approximatley <span>
+   {{ prediction_percent }}</span>% of {{ form_country }}'s Population.</div>
    <br>
    <div class="info">
      Note : The above field takes an integer as input which is the <b>n<sup>th</sup></b> day from the start of the year, i.e. 15-01-2021. Enter a value greater than 16.
