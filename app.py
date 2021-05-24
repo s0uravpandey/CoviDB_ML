@@ -4,9 +4,9 @@ import pickle
 import pandas as pd
 
 app = Flask(__name__)
-ind_svr_model = pickle.load(open('India/ind_svr_model.pkl', 'rb'))
-fr_model=pickle.load(open('france/fr_linreg_model.pkl','rb'))
-aus_model=pickle.load(open('australia/aus_svr_model.pkl','rb'))
+ind_svr_model = pickle.load(open('India\ind_svr_model.pkl', 'rb'))
+fr_model=pickle.load(open('france\fr_linreg_model.pkl','rb'))
+aus_model=pickle.load(open('australia\aus_svr_model.pkl','rb'))
 
 @app.route('/')
 def home():
@@ -23,7 +23,7 @@ def predict():
     if(country=='India'):
         #india
         day=day-13
-        dataset = pd.read_csv('india/ind_vaccinations.csv')
+        dataset = pd.read_csv('india\ind_vaccinations.csv')
         X = dataset.iloc[0:88,5].values
         y = dataset.iloc[0:112,3].values
         y=y.reshape(-1,1)
@@ -47,7 +47,7 @@ def predict():
         return render_template('vaccine_Prediction_final.html',prediction_date=date,prediction_text=output,prediction_percent=round(output//671000),form_country=country)
     if(country=='Australia'):
         day=day-48
-        dataset = pd.read_csv('Australia/aus_vaccinations.csv')
+        dataset = pd.read_csv('Australia\aus_vaccinations.csv')
         X = dataset.iloc[30:86,5].values
         y = dataset.iloc[30:86,3].values
         y=y.reshape(-1,1)
