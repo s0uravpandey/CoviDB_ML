@@ -23,7 +23,7 @@ def predict():
     if(country=='India'):
         #india
         day=day-13
-        dataset = pd.read_csv('india/ind_vaccinations.csv')
+        dataset = pd.read_csv('India/ind_vaccinations.csv')
         X = dataset.iloc[0:88,5].values
         y = dataset.iloc[0:112,3].values
         y=y.reshape(-1,1)
