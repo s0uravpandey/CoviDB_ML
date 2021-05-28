@@ -6,6 +6,8 @@
   <title>CoviDB</title>
   <link rel="icon"  type="image/png" href="https://www.cmu.edu/coronavirus/assets/images/icon-line-syringe.png" type="image/x-icon">
   <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS"
+    crossorigin="anonymous">
   <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,400;1,300&display=swap" rel="stylesheet">
 </head>
 <body>
@@ -40,7 +42,6 @@
       color: #057bfe;
       font-size: 20px;
     }
-    
     #country{
       width: 200px;
       height: 50px;
@@ -83,11 +84,19 @@
     .hide {
       display: none;
     }
-    .bgimg{
+    .bgimg {
   background-image: url('https://image.freepik.com/free-vector/abstract-banner-background-with-red-shapes_1361-3348.jpg');
   min-height: 200px;
   background-position: center;
   background-size: cover;
+}
+.container {
+  height: 50vh;
+}
+
+.chart-wrapper {
+  width: 500px;
+  height: 500px;
 }
   </style>
   <div class="bgimg w3-display-container w3-animate-opacity w3-text-white">
@@ -106,7 +115,7 @@
         </select>
     	<label for="prediction_date">Date:</label>
         <input type="date" id="prediction_date" name="prediction_date" required><br>
-        <button type="submit" class="btn btn-primary btn-block btn-large" id="btnsend">Predict</button>
+        <button type="submit" class="btn btn-primary btn-large" id="btnsend">Predict</button>
     </form>
    <br>
    <br>
@@ -115,6 +124,20 @@
    {{ prediction_percent }}</span>% of {{ form_country }}'s Population.</div>
    <br>
  </div>
+  <div class="wrapper">
+    <div class="container d-flex flex-column justify-content-center align-items-center">
+      <div class="title text-center mb-5">
+        <h1>Number of Vaccines used by Different Countries</h1>
+      </div>
+      <div class="chart-wrapper">
+        <canvas id="myChart"></canvas>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.3/Chart.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels"></script>
+  <script src="./js/script.js"></script>
  <div><h1>List Of all Vaccines being applied in countries</h1></div>
  <div class="table">
    <table border="1" class="dataframe">
@@ -1475,5 +1498,48 @@
       }
    });
  </script> -->
+ <script type="text/javascript">
+   let ctx = document.getElementById('myChart').getContext('2d');
+let labels = ['AstraZeneca', 'Sputnik V', 'Sinopharm', 'Moderna','Pfizer','Johnson&Johnson'];
+let colorHex = ['#FB3640', '#EFCA08', '#43AA8B', '#253D5B','#58eb34','#eb34b1'];
+
+let myChart = new Chart(ctx, {
+  type: 'pie',
+  data: {
+    datasets: [{
+      data: [141, 29, 39, 42,92,14],
+      backgroundColor: colorHex
+    }],
+    labels: labels
+  },
+  options: {
+    responsive: true,
+    legend: {
+      position: 'bottom'
+    },
+    plugins: {
+      datalabels: {
+        color: '#fff',
+        anchor: 'end',
+        align: 'start',
+        offset: -10,
+        borderWidth: 2,
+        borderColor: '#fff',
+        borderRadius: 25,
+        backgroundColor: (context) => {
+          return context.dataset.backgroundColor;
+        },
+        font: {
+          weight: 'bold',
+          size: '10'
+        },
+        formatter: (value) => {
+          return value + ' %';
+        }
+      }
+    }
+  }
+})
+ </script>
 </body>
 </html>
