@@ -10,7 +10,7 @@ aus_model=pickle.load(open('Australia/aus_svr_model.pkl','rb'))
 
 @app.route('/')
 def home():
-    return render_template('vaccine_Predictions_final.html')
+    return render_template('vaccine_Prediction_final.html')
 
 @app.route('/predict',methods=['POST'])
 def predict():
@@ -35,7 +35,7 @@ def predict():
         y=sc_y.fit_transform(y)
         y_pred=sc_y.inverse_transform(ind_svr_model.predict(sc_X.transform(np.array([[day]]))))
         output=round(y_pred[0])
-        return render_template('vaccine_Predictions_final.html',prediction_date=date,prediction_text=output,prediction_percent=round(output//13000000),form_country=country)
+        return render_template('vaccine_Prediction_final.html',prediction_date=date,prediction_text=output,prediction_percent=round(output//13000000),form_country=country)
     if(country=='France'):
         #france
         day=day+5
@@ -44,7 +44,7 @@ def predict():
         day=poly_reg.fit_transform([[day]])
         output=fr_model.predict(day)
         output=round(output[0])
-        return render_template('vaccine_Predictions_final.html',prediction_date=date,prediction_text=output,prediction_percent=round(output//671000),form_country=country)
+        return render_template('vaccine_Prediction_final.html',prediction_date=date,prediction_text=output,prediction_percent=round(output//671000),form_country=country)
     if(country=='Australia'):
         day=day-48
         dataset = pd.read_csv('Australia/aus_vaccinations.csv')
@@ -59,7 +59,7 @@ def predict():
         y=sc_y.fit_transform(y)
         y_pred=sc_y.inverse_transform(aus_model.predict(sc_X.transform(np.array([[day]]))))
         output=round(y_pred[0])
-        return render_template('vaccine_Predictions_final.html',prediction_date=date,prediction_text=output,prediction_percent=round(output//254000),form_country=country)
+        return render_template('vaccine_Prediction_final.html',prediction_date=date,prediction_text=output,prediction_percent=round(output//254000),form_country=country)
         
     
 
